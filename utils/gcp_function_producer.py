@@ -2,7 +2,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*- 
 """ 
-Created on Wed Mar 09 10:54:20 2020 
+Created on Wed Mar 09 10:54 BRT 2020 | Edited for the last time on Fri Mar 27 14:48 BRT 2020 
  
 @author: guilherme passos |twiiter: @gpass0s
 
