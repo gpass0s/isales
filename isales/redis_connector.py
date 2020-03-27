@@ -8,13 +8,13 @@ Created on Fri Mar 27 13:25 BRT 2020
 import os
 import redis
 
-class RedisConnectionManager(Object):
+class RedisConnectionManager(object):
 
     _client = None
 
     def __init__(self):
-        self.redis_host = os.envrion["REDIS_HOST"]
-        self.redis_port = os.envrion["REDIS_PORT"]
+        self.redis_host = os.environ["REDIS_HOST"]
+        self.redis_port = os.environ["REDIS_PORT"]
     
     @classmethod
     def get_client(cls):
@@ -31,8 +31,7 @@ class RedisConnectionManager(Object):
 
     def _setup_redis(self):
         redis_client = redis.Redis(
-            host=self.redis_client,
+            host=self.redis_host,
             port=self.redis_port,
-            decode_respeonses=True
         )
         return redis_client
