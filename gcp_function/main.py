@@ -16,7 +16,7 @@ import redis
 _redis_host = os.environ["REDIS_HOST"]
 _redis_port = os.environ["REDIS_PORT"]
 _redis_queues = ["QUEUE_A", "QUEUE_B"]
-redis_client = redis.Redis(host=redis_host, port=redis_port)
+redis_client = redis.Redis(host=_redis_host, port=_redis_port)
 
 
 def insert_data_into_redis(request):
