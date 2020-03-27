@@ -24,7 +24,7 @@ class RedisConnectionManager(Object):
         """
 
         if cls._client:
-                return cls._client
+            return cls._client
 
         cls._client = cls()._setup_redis()
         return cls._client
