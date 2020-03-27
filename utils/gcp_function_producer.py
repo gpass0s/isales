@@ -6,7 +6,7 @@ Created on Wed Mar 09 10:54:20 2020
  
 @author: guilherme passos |twiiter: @gpass0s
 
-This module insert data Hubspot webhook coming in from into Redis 
+This module inserts that is coming in from Hubspot webhook coming into Redis 
 """ 
 
 import os
