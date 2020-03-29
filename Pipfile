@@ -6,9 +6,10 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-redis = "*"
-pytest = "*"
+redis = "==3.4.1"
+pytest = "==5.4.1"
 isales = {editable = true,path = "."}
+ipython= "==7.13.0"
 
 [requires]
 python_version = "3.7"
