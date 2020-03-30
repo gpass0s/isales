@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*- 
-""" 
-Created on Fri Mar 27 13:25 BRT 2020 
- 
-@author: guilherme passos |twiiter: @gpass0s 
-""" 
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Mar 27 13:25 BRT 2020
+Last modified on Mon 30 18:54 BRT 2020
+@author: guilherme passos |twiiter: @gpass0s
+"""
 import os
 import redis
+
 
 class RedisConnectionManager(object):
 
@@ -15,12 +16,12 @@ class RedisConnectionManager(object):
     def __init__(self):
         self.redis_host = os.environ["REDIS_HOST"]
         self.redis_port = os.environ["REDIS_PORT"]
-    
+
     @classmethod
     def get_client(cls):
         """
         Returns a redis client
-        This's a singleton implementation 
+        This's a singleton implementation
         """
 
         if cls._client:
