@@ -10,10 +10,10 @@ from setuptools import setup
 
 
 setup(
-    name = "isales",
-    version = "0.0.0",
-    description = "Isales is an automated service that predicts leads probability to close",
-    author = "@gpass0s",
-    url = "https://github.com/gPass0s/isales",
-    packages=find_packages(exclude=['tests*'])
+    name="isales",
+    version="0.0.0",
+    description="Isales is an automated service that predicts leads probability to close",
+    author="@gpass0s",
+    url="https://github.com/gPass0s/isales",
+    packages=find_packages(exclude=["tests*"]),
 )
