@@ -13,13 +13,13 @@ import json
 import os
 import requests
 
+from isales.logger import logger
 from isales.redis_connector import RedisConnectionManager
 
 
 class RedisReader:
-
     def __init__(self, queue_to_read=None):
-        self._redis_client = RedisConnectionManager()
+        self.redis_client = RedisConnectionManager()
         self._max_buffer = os.environ["MAX_BUFFER"]
         if queue_to_read:
             self.queue_to_read = queue_to_read
@@ -32,53 +32,62 @@ class RedisReader:
     def _read_from_redis(self):
         """Reads nested data from redis queue and formats this data into a list of dictonaries"""
         subscription_items = []
-        items = self._redis_client.lrange(self.queue_to_read, 0, self._max_buffer)
+        items = self.redis_client.lrange(self.queue_to_read, 0, self._max_buffer)
 
         for item in items:
             parsed_item = ast.literal_eval(item.decode("utf-8"))
             subscription_items = subscription_items + parsed_item
 
+        logger.info(msg="")
         return subscription_items
 
     def remove_items(self):
         """Removes data from Redis"""
-        self._redis_client.lrem(self.queue_to_read, 0, self._max_buffer)
+        self.redis_client.lrem(self.queue_to_read, 0, self._max_buffer)
 
 
 class HubSpotFetcher:
-
     def __init__(self):
-
-        self._redis_client = RedisConnectionManager()
-        self.fetched_data = {"new_contacts": [], "deal_contacts": []}
+        self.redis_client = RedisConnectionManager()
         self._deal_api_url = os.environ["DEAL_API_URL"]
         self._contact_api_url = os.environ["CONTACT_API_URL"]
-        self._contact_creation_subscription = os.environ["CONTACT_CREATION_SUBSCRIPTION"]
+        self._contact_creation_subscription = os.environ[
+            "CONTACT_CREATION_SUBSCRIPTION"
+        ]
 
     def __call__(self, deal_items):
         return self._fetch_from_hubspot(deal_items)
 
     def _fetch_from_hubspot(self, subscription_items):
         """Fetches deal and associated contact information from HubSpot database"""
-
+        fetched_data = {"predictable_contacts": [], "non_predictable_contacts": []}
         for item in subscription_items:
             if item["subscriptionType"] == self._contact_creation_subscription:
-                self.fetched_data["new_contacts"].append(item)
+                fetched_data["non_predictable_contacts"].append(item)
             else:
                 url = self._build_url(self._deal_api_url, item["objectId"])
                 deal = self._request(url)
                 if deal:
-                    contacts_id = deal["associations"]["associatedVids"]
-                    url = self._build_url(self._contact_api_url, *contacts_id)
-                    contacts = self._request(url)
-                    if contacts:
-                        self.fetched_data["deal_contacts"].append(contacts)
+                    try:
+                        contacts_id = deal["associations"]["associatedVids"]
+                        if contacts_id:
+                            url = self._build_url(self._contact_api_url, *contacts_id)
+                            contacts = self._request(url)
+                            if contacts:
+                                fetched_data["predictable_contacts"].append(contacts)
+                        else:
+                            logger.error(msg="Deal with no contact associated")
+                    except (KeyError, TypeError) as err:
+                        logger.error(
+                            msg="Deal with no contact associated",
+                            extra={"full_msg_error": err},
+                        )
 
-        return self.fetched_data
+        return fetched_data
 
     def _request(self, url):
         """Requests data from HubSport Database"""
-        access_token = self._redis_client.get("acces_token").decode("utf-8")
+        access_token = self.redis_client.get("acces_token").decode("utf-8")
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get(url, headers=headers)
         if response.staus_code == 200:
