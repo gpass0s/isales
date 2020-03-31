@@ -2,10 +2,10 @@
 # -*- encoding: utf-8 -*-
 """
 Created on Sun Mar 29 08:25 BRT 2020
-Last modified on Mon Mar 30 18:52 BRT 2020
+Last modified on Tue Mar 30 20:19 BRT 2020
 author: guilherme passos | twitter: @gpass0s
 
-This module reads the new events that are comming into the redis queue and fetches these events
+This module reads the new events that are arriving in the redis queue and fetches these events
 information in HubSpot database.
 """
 import ast
@@ -51,9 +51,7 @@ class HubSpotFetcher:
         self.redis_client = RedisConnectionManager()
         self._deal_api_url = os.environ["DEAL_API_URL"]
         self._contact_api_url = os.environ["CONTACT_API_URL"]
-        self._contact_creation_subscription = os.environ[
-            "CONTACT_CREATION_SUBSCRIPTION"
-        ]
+        self._contact_creation_subscription = os.environ["CONTACT_CREATION_SUBSCRIPTION"]
 
     def __call__(self, deal_items):
         return self._fetch_from_hubspot(deal_items)
