@@ -1,4 +1,6 @@
-## Insight Sales / HubSpot Project
+==================================
+## Insight Sales | HubSpot Project
+==================================
 
 This project aims to create an automated and near real time service that predicts a company HubSpot 
 leads probability to buy products. In its main core, this project uses a XGboost model that was 
