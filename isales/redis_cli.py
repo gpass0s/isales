@@ -4,6 +4,7 @@
 Created on Fri Mar 27 13:25 BRT 2020
 Last modified on Fri 03 16:49 BRT 2020
 @author: guilherme passos |twiiter: @gpass0s
+This module performs all redis operations such as connecting, reading and writing
 """
 import ast
 import os
