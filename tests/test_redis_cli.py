@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Mar 27 13:27 BRT 2020
-
+Last modified on Fri 03 18:45 BRT 2020
 author: guilherme passos | twitter: @gpass0s
-This module tests splitter module's methods
+This module tests redis cli module's methods
 """
 
 from unittest.mock import call, MagicMock, patch
