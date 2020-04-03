@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed 1 APR 09:11 BRT 2020
-Last modified on
+Created on Wed 01 APR 09:11 BRT 2020
+Last modified on Fri 03 18:55 BRT 2020
 Author: Guilherme Passos | twitter: @gpassos
 Isales package's main module and CLI
 """
