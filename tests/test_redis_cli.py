@@ -7,7 +7,7 @@ author: guilherme passos | twitter: @gpass0s
 This module tests redis cli module's methods
 """
 
-from unittest.mock import call, MagicMock, patch
+from unittest.mock import call, patch
 from isales.redis_cli import RedisConnectionManager, RedisReader, RedisWriter
 
 
@@ -47,14 +47,17 @@ def test_read_from_redis(mocked_get_client):
 @patch.object(RedisConnectionManager, "get_client")
 def test_insert_to_redis(mocked_redis_client):
 
-    insert_to_redis_data = {"queue_a": [_EXPECTED_RESPONSE[0]], "queue_b": [_EXPECTED_RESPONSE[1]]}
+    insert_to_redis_data = {
+        "queue_a": [_EXPECTED_RESPONSE[0]],
+        "queue_b": [_EXPECTED_RESPONSE[1]],
+    }
 
     redis_writer = RedisWriter()
     redis_writer(insert_to_redis_data)
 
     calls = [
-        call("queue_a", str(_EXPECTED_RESPONSE[0])), 
-        call("queue_b", str(_EXPECTED_RESPONSE[1]))
+        call("queue_a", str(_EXPECTED_RESPONSE[0])),
+        call("queue_b", str(_EXPECTED_RESPONSE[1])),
     ]
 
     mocked_redis_client.rpush.has_calls(calls)
