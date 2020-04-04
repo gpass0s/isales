@@ -5,7 +5,7 @@ Created on Sun Mar 29 10:59 BRT 2020
 Last modified on Fri 03 18:41 BRT 2020
 author: guilherme passos | twitter: @gpass0s
 
-This module teests fetcher module's methods
+This module tests fetcher module's methods
 """
 import pytest
 from unittest.mock import call, MagicMock, patch
@@ -22,7 +22,7 @@ from isales.collector import HubSpotFetcher
 @patch.dict("os.environ", {"CONTACT_CREATION_SUBSCRIPTION": "contact.creation"})
 @patch.dict("os.environ", {"PREDICTABLE_CONTACTS_QUEUE": "CONTACTS_FOR_PREDICTION"})
 @patch.dict("os.environ", {"CONTATCS_FOR_UPDATE_QUEUE": "CONTACTS_FOR_UPDATE"})
-@patch.dict("os.environ", {"MAX_BUFFER": "10"})
+@patch.dict("os.environ", {"MAX_BUFFER_COLLETOR": "10"})
 @patch.object(collector, "RedisConnectionManager")
 @patch.object(collector, "RedisReader")
 @patch.object(collector, "RedisWriter")
