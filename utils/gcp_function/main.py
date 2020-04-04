@@ -14,7 +14,7 @@ import redis
 
 _redis_host = os.environ["REDIS_HOST"]
 _redis_port = os.environ["REDIS_PORT"]
-_redis_queues = ["QUEUE_A", "QUEUE_B", "QUEUE_C", "QUEUE_D"]
+_redis_queues = ["SUBSCRIPTION_QUEUE"]
 redis_client = redis.Redis(host=_redis_host, port=_redis_port)
 
 
@@ -40,6 +40,6 @@ def insert_data_into_redis(request):
     }
 
     payload = request.get_json()
-    queue_to_insert = round(random.uniform(0, 3))
-    redis_client.rpush(_redis_queues[queue_to_insert], str(payload))
+    # queue_to_insert = round(random.uniform(0, 3))
+    redis_client.rpush(_redis_queues[0], str(payload))
     return "Data successfully inserted to Redis"
