@@ -3,7 +3,7 @@
 """
 Created on Wed 01 APR 09:11 BRT 2020
 Last modified on Fri 03 18:55 BRT 2020
-Author: Guilherme Passos | twitter: @gpassos
+Author: Guilherme Passos | twitter: @gpass0s
 Isales package's main module and CLI
 """
 import argparse
