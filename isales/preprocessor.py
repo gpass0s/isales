@@ -2,10 +2,10 @@
 # -*- conding: utf-8 -*-
 """
 Created on Sun Mar 30 19:54 BRT 2020
-Last modified on Fri 03 22:39 BRT 2020
+Last modified on Fri 04 15:34 BRT 2020
 author: guilherme passos | twitter: @gpass0s
 
-This module prepares contacts fetched from Hubspot for prediction. Those contacts that don't enough 
+This module prepares contacts fetched from Hubspot for prediction. Those contacts that don't enough
 information are assigned with the 404 prediction
 """
 import os
@@ -19,9 +19,9 @@ class Transformer:
     def __init__(self):
         self.contacts_for_prediction = os.environ["CONTATCS_FOR_PREDICTION_QUEUE"]
         self.contacts_for_update = os.environ["CONTATCS_FOR_UPDATE_QUEUE"]
-        max_buffer = int(os.environ["MAX_BUFFER"]) + 47
         self.redis_reader = RedisReader(
-            os.environ["PREDICTABLE_CONTACTS_QUEUE"], max_buffer
+            os.environ["PREDICTABLE_CONTACTS_QUEUE"],
+            os.environ["MAX_BUFFER_PREPROCESSOR"],
         )
         self.redis_writer = RedisWriter()
         self.contacts = {self.contacts_for_prediction: [], self.contacts_for_update: []}
@@ -32,7 +32,11 @@ class Transformer:
         self.contacts[self.contacts_for_update].clear()
         self._format_predictable_contacts(predictable_contacts)
         self.redis_writer(self.contacts)
-        self.redis_reader.remove_items()
+        if (
+            self.contacts[self.contacts_for_prediction]
+            or self.contacts[self.contacts_for_update]
+        ):
+            self.redis_reader.remove_items()
 
     def _format_predictable_contacts(self, predictable_contacts):
         """Formats contacts to be predict by the Machine Learning model"""
