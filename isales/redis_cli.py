@@ -103,7 +103,10 @@ class RedisReader:
 
         for item in items:
             parsed_item = ast.literal_eval(item.decode("utf-8"))
-            redis_items = redis_items + parsed_item
+            try:
+                redis_items = redis_items + parsed_item
+            except TypeError:
+                redis_items = redis_items + [parsed_item]
 
         if redis_items:
             logger.info(
@@ -114,8 +117,9 @@ class RedisReader:
     @try_again
     def remove_items(self):
         """Removes data from Redis"""
-        queue_length = self.redis_client.llen(self.queue_to_read)
-        self.redis_client.ltrim(self.queue_to_read, self.max_buffer + 1, queue_length)
+        upper_bound = self.redis_client.llen(self.queue_to_read)
+        lower_bound = int(self.max_buffer) + 1
+        self.redis_client.ltrim(self.queue_to_read, lower_bound, upper_bound)
         logger.info(msg=f"Items were deleted from {self.queue_to_read} redis queue")
 
 
@@ -134,7 +138,7 @@ class RedisWriter:
         for key in contacts.keys():
             if contacts[key]:
                 for contact in contacts[key]:
-                    self.redis_client.rpush(key, str(contact))
+                    self.redis_client.rpush(key, str([contact]))
                 logger.info(
                     msg=f"{len(contacts[key])} contacts were inserted into {key} queue."
                 )
