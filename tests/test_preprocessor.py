@@ -44,17 +44,12 @@ _PREDICTABLE_CONTACTS = [
     }
 ]
 
-_NON_PREDICTABLE_CONTACTS = [
-    {"objectId": 383611195, "subscriptionType": "contact.creation"},
-    {"objectId": 383216724, "subscriptionType": "contact.creation"},
-]
-
 
 @pytest.fixture
 @patch.dict("os.environ", {"CONTATCS_FOR_PREDICTION_QUEUE": "CONTACTS_FOR_PREDICTION"})
 @patch.dict("os.environ", {"CONTATCS_FOR_UPDATE_QUEUE": "CONTACTS_FOR_UPDATE"})
 @patch.dict("os.environ", {"PREDICTABLE_CONTACTS_QUEUE": "PREDICTABLE_CONTACTS"})
-@patch.dict("os.environ", {"MAX_BUFFER": "10"})
+@patch.dict("os.environ", {"MAX_BUFFER_PREPROCESSOR": "10"})
 @patch.object(preprocessor, "RedisReader")
 @patch.object(preprocessor, "RedisWriter")
 def preprocessor_object(RedisWriter, RedisReader):
