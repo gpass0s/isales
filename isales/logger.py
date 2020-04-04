@@ -1,10 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/python3
+# -*- conding: utf-8 -*-
 """
-.. Vertra (copyright)
-.. moduleauthor:: Guilherme Passos <guilhermepassos@outlook.com>
-.. created:2020-1-16
-.. last modified: 2020-1-16
+Created on Tue Mar 29 08:30 BRT 2020
 
+author: guilherme passos | twitter: @gpass0s
+
+This module generates logs for the entire application
 """
 
 import logging
