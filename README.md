@@ -25,8 +25,8 @@ At the end of the day, these predicitons help sales representatives to decide wh
 
 ## Motivation
 
-* Optimizes Hubspot sales representative's time.
-* Ensures machine learning models ability of generating useful and real life insights 
+* Optimize Hubspot sales representative's time.
+* Ensure machine learning models ability of generating useful and real life insights 
 
 ## How to use it
 
