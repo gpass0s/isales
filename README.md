@@ -18,9 +18,10 @@ At the end of the day, these predicitons help sales representatives to decide wh
 # The Project Architecture
 
 <p align="center">
-  <img src="https://imgur.com/gallery/DoMDJVT"/>
+  <img src="https://i.imgur.com/6aM1PBl.png"/>
   <br/>
 </p>
+
 
 ## Motivation
 
