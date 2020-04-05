@@ -34,8 +34,8 @@ At the end of the day, these predicitons help sales representatives to decide wh
 
 * Hubspot <a href= https://developers.hubspot.com/docs/methods/webhooks/webhooks-overview>webhook API</a> subscription. 
 * <a href = https://cloud.google.com/functions>Google Cloud</a> or <a href ="https://aws.amazon.com/lambda/?nc1=h_ls">AWS Lambda</a> function. The function code can be found <a href=https://github.com/gPass0s/isales/tree/master/utils/gcp_function>here</a>.
-*<a href= "https://redis.io/"> Redis </a> server.
-*<a href= https://github.com/gPass0s/isales/blob/master/utils/crontab>Cronjob </a>to refresh the Hupspot API token each 6 hours. 
+* <a href= "https://redis.io/"> Redis </a> server.
+* <a href= https://github.com/gPass0s/isales/blob/master/utils/crontab>Cronjob </a>to refresh the Hupspot API token each 6 hours. 
 
 ### Usage
 
