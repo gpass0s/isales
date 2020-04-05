@@ -29,7 +29,7 @@ def test_redis_connection_singleton():
 
 @patch.object(RedisConnectionManager, "get_client")
 def test_read_from_redis(mocked_get_client):
-
+    # arange
     queue_to_read = "QUEUE_A"
     max_buffer = 2
     redis_queue = [
@@ -37,16 +37,16 @@ def test_read_from_redis(mocked_get_client):
         b"[{'objectId': 383611195, 'subscriptionType': 'contact.creation'}]",
     ]
     mocked_get_client.return_value.lrange.return_value = redis_queue
-
+    # act
     redis_reader = RedisReader(queue_to_read, max_buffer)
     response = redis_reader()
-
+    # assert
     assert response == _EXPECTED_RESPONSE
 
 
 @patch.object(RedisConnectionManager, "get_client")
 def test_insert_to_redis(mocked_redis_client):
-
+    # arrange
     insert_to_redis_data = {
         "queue_a": [_EXPECTED_RESPONSE[0]],
         "queue_b": [_EXPECTED_RESPONSE[1]],
