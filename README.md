@@ -44,9 +44,9 @@ At the end of the day, these predicitons help sales representatives to decide wh
 * Rename the enviroment file: `$ mv .env.template env`
 * Dockerize: `$ docker build --no-cache -t isales:latest -f Dockerfile .`
 * Run **collector** service: `$ docker run -d -it --name collector --network host --env-file env isales:latest python isales run collector`
-* Run **preprocessor** service : `$ docker run -d -it --name collector --network host --env-file env isales:latest python isales run preprocessor`
-* Run **model** service: `$ docker run -d -it --name collector --network host --env-file env isales:latest python isales run model`
-* Run **sender** service: `$ docker run -d -it --name collector --network host --env-file env isales:latest python isales run model`
+* Run **preprocessor** service : `$ docker run -d -it --name preprocessor --network host --env-file env isales:latest python isales run preprocessor`
+* Run **model** service: `$ docker run -d -it --name model --network host --env-file env isales:latest python isales run model`
+* Run **sender** service: `$ docker run -d -it --name sender --network host --env-file env isales:latest python isales run model`
 
 ### Unit testing
 * Activate the virtual enviroment: `$ pipenv install && pipenv shell`
