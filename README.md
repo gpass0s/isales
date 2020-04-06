@@ -41,7 +41,7 @@ At the end of the day, these predicitons help sales representatives to decide wh
 
 * Clone this repository: `$ git clone git@github.com:gPass0s/isales.git`
 * Access the project root folder: `$ cd isales`
-* Rename the enviroment file: `$ mv .env.template env`
+* Rename the environment file: `$ mv .env.template env`
 * Dockerize: `$ docker build --no-cache -t isales:latest -f Dockerfile .`
 * Run **collector** service: `$ docker run -d -it --name collector --network host --env-file env isales:latest python isales run collector`
 * Run **preprocessor** service : `$ docker run -d -it --name preprocessor --network host --env-file env isales:latest python isales run preprocessor`
@@ -49,5 +49,5 @@ At the end of the day, these predicitons help sales representatives to decide wh
 * Run **sender** service: `$ docker run -d -it --name sender --network host --env-file env isales:latest python isales run model`
 
 ### Unit testing
-* Activate the virtual enviroment: `$ pipenv install && pipenv shell`
+* Activate the virtual environment: `$ pipenv install && pipenv shell`
 * Run tests: `$ pipenv run python -m pytest --vv tests/`
