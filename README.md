@@ -3,7 +3,7 @@
 ==================================
 
 > This project aims to create an automated and near real time service that predicts Hubspot contact's probability to buy exchange programs. In its main core, this project uses a XGboost model which was 
-trained with more than 10 thousands Hubspot records of leads buying pattern. 
+trained with Hubspot records of leads buying pattern. 
 
 > In order to receive data from Hubspot, this project relies on a Google Cloud Function which works
 as a producer sending events to a redis queue. The GCP function is subscribed to HubSpot through a 
