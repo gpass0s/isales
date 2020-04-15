@@ -4,14 +4,18 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest = "==5.4.1"
+ipython= "==7.13.0"
 
 [packages]
 redis = "==3.4.1"
-pytest = "==5.4.1"
 isales = {editable = true,path = "."}
-ipython= "==7.13.0"
 requests = "==2.23.0"
 python-json-logger = "==0.1.11"
+xgboost = "==1.0.2"
+pandas = "==1.0.3"
+numpy = "==1.18.2"
+sklearn = "==0.0"
 
 [requires]
 python_version = "3.7"
